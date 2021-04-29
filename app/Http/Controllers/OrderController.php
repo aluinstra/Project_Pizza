@@ -2,29 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
-use App\Models\Ingredient;
 use Illuminate\Http\Request;
 
-class CategroryIngredientController extends Controller
+class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Category $category)
+    public function index()
     {
-        // dd($category);
-
-        // $ingredients = Ingredient::where('category_id', $category->id)->get();
-
-        $ingredients = $category->ingredients;
-
-        // dd($ingredients);
-
-
-        return response()->json(['ingredients' => $ingredients]);
+        //
     }
 
     /**

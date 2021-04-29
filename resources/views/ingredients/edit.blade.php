@@ -1,3 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
     <h1></h1>
 
     <form action="/ingredients/{ingredient}" method="POST">
@@ -6,7 +18,7 @@
             <tr>
                 <th>Product</th>
                 <th>Category</th>
-                <th>Current stock</th>
+                <th>Stock</th>
             </tr>
             <tr>
                 <td>
@@ -30,12 +42,12 @@
                     @endif
                 </td>
                 <td>
-                    <input type="text" name="last_order" value="{{ old('last_order')}}">
-                    <!-- <input type="number" id="quantity" name="quantity" min="1" max="100" value="{{ old('quantity')}}"> -->
+                    <!-- <input type="text" name="stock" value="{{ old('stock')}}"> -->
+                    <input type="text" name="stock" value="{{ $ingredient->stock }}">
 
 
-                    @if ($errors->has('last_order'))
-                    <div class="error">{{ $errors->first('last_order') }}</div>
+                    @if ($errors->has('stock'))
+                    <div class="error">{{ $errors->first('stock') }}</div>
                     @endif
                 </td>
             </tr>
@@ -44,4 +56,7 @@
             <button type="submit">submit</button>
         </div>
     </form>
-    </body>
+
+</body>
+
+</html>

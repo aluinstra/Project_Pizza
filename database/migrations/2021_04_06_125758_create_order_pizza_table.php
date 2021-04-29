@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePizzasTable extends Migration
+class CreateOrderPizzaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreatePizzasTable extends Migration
      */
     public function up()
     {
-        Schema::create('pizzas', function (Blueprint $table) {
+        Schema::create('order_pizza', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->foreignId('customer_id');
+            $table->foreignId('pizza_id');
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ class CreatePizzasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pizzas');
+        Schema::dropIfExists('order_pizza');
     }
 }

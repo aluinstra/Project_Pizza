@@ -7,31 +7,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Document</title>
+
 </head>
 
 <body>
-    <h1>Add new pizza to menu</h1>
 
-    <form action="/pizzas" method="POST">
-        @csrf
-        title
-        <input type="text" name="name" value="{{ old('name')}}">
-        @if ($errors->has('title'))
-        <div class="error">{{ $errors->first('title') }}</div>
-        @endif
-
-        <table id='ingredients_selection'>
+    <!-- <form action="/orders" method="POST">
+        @csrf -->
+    <table id='productTable'>
+        <thead>
             <tr>
-                <th>Ingredient</th>
+                @foreach ($tableHeads as $tableHead)
+                <th>{{ $tableHead}}</th>
+                @endforeach
+            </tr>
+        </thead>
+        <tbody id='pizzaContainer'>
+
+            @include('users.pizzaOverview')
+
+        </tbody>
+    </table>
+    <div id=tableButton>
+        <button type="submit">submit</button>
+    </div>
+    <!-- </form> -->
+
+
+
+    <table id='ingredients_selection'>
+
+        <body>
+
+            <tr>
                 <th>Category</th>
-                <th>Units</th>
+                <th>Ingredient</th>
             </tr>
             <tr id='recipeTableRow'>
-                <td>
-                    <select name="ingredient_id[]" class="ingredients">
-                        <option value="0">Select Product</option>
-                    </select>
-                </td>
                 </td>
                 <td class="categoryRow">
                     <select name="category_id[]" class="category">
@@ -42,9 +54,8 @@
                     </select>
                 </td>
                 <td>
-                    <select name="units[]" id="units">
-                        @for ($x = 1; $x <= 8; $x++) <option value="{{ $x }}">{{ $x }}</option>
-                            @endfor
+                    <select name="ingredient_id[]" class="ingredients">
+                        <option value="0">Select Product</option>
                     </select>
                 </td>
             </tr>
@@ -55,13 +66,15 @@
             </tr>
             <tr>
                 <td>
-                    <button type="submit">Submit</button>
+                    <button type="btn" id="checkButton">check</button>
                 </td>
             </tr>
-        </table>
 
+        </body>
+    </table>
 
-        <script src='/js/app.js'></script>
+    <script src='/js/app.js'></script>
+
 
 </body>
 

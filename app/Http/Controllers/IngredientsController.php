@@ -49,13 +49,14 @@ class IngredientsController extends Controller
     public function store(Request $request)
     {
         // dd($request);
+
         Ingredient::create(request()->validate([
             'ingredient' => ['required', 'min:2'],
             'category_id' => ['required'],
             'stock' => ['required', 'numeric', 'min:1']
         ]));
 
-        return redirect()->route('ingredients.create');
+        return redirect()->route('ingredients.index');
     }
 
     /**
@@ -107,8 +108,8 @@ class IngredientsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $ingredient)
     {
-        //
+        dd($ingredient);
     }
 }

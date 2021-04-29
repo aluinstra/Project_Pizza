@@ -2,29 +2,33 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pizza;
 use App\Models\Category;
-use App\Models\Ingredient;
 use Illuminate\Http\Request;
 
-class CategroryIngredientController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Category $category)
+    public function index()
     {
-        // dd($category);
+        $tableHeads = array("id", "Naam", "Order");
 
-        // $ingredients = Ingredient::where('category_id', $category->id)->get();
+        $pizzas = Pizza::get();
 
-        $ingredients = $category->ingredients;
-
-        // dd($ingredients);
+        $categories = Category::get();
 
 
-        return response()->json(['ingredients' => $ingredients]);
+        $total = 0;
+
+        // foreach ($ingredients as $key => $ingredient) {
+        //     $total += $ingredient->used;
+        // }
+
+        return view('users.index', compact('pizzas', 'categories', 'tableHeads'));
     }
 
     /**
